@@ -1,0 +1,52 @@
+<div class="teams-table">
+  <h3>Last Update: <%= time_ago_in_words(Event.first.timestamp) %> ago...</h3>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Team</th>
+          <th>0</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+          <th>5</th>
+          <th>6</th>
+          <th>7</th>
+          <th>8</th>
+          <th>9</th>
+          <th>10</th>
+          <th>11</th>
+          <th>12</th>
+          <th>13</th>
+        <tr>
+      </thead>
+      <tbody>
+        <% Team.in_order.each_with_index do |team, index| %>
+        <tr>
+          <td>
+            <%= "#{(index + 1).to_i}. #{team.name}" %>
+            <% if team.person %>
+              - <%= team.person.name %>
+          <% end %>
+          </td>
+          <td><%= team.accomplishment_text(0) %></td>
+          <td><%= team.accomplishment_text(1) %></td>
+          <td><%= team.accomplishment_text(2) %></td>
+          <td><%= team.accomplishment_text(3) %></td>
+          <td><%= team.accomplishment_text(4) %></td>
+          <td><%= team.accomplishment_text(5) %></td>
+          <td><%= team.accomplishment_text(6) %></td>
+          <td><%= team.accomplishment_text(7) %></td>
+          <td><%= team.accomplishment_text(8) %></td>
+          <td><%= team.accomplishment_text(9) %></td>
+          <td><%= team.accomplishment_text(10) %></td>
+          <td><%= team.accomplishment_text(11) %></td>
+          <td><%= team.accomplishment_text(13) %></td>
+          <td><%= team.accomplishment_text(14) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
