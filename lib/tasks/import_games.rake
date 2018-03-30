@@ -2,7 +2,10 @@ require './app/services/baseball_service'
 
 namespace :main do
   task import_games: :environment do
-    today = Date.today
+    today = Time.current
+
+    p today
+
     year = today.year.to_s
     month = format_number(today.month)
     day = format_number(today.day)
