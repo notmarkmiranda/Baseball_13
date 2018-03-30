@@ -62,6 +62,8 @@ mears = Person.create(name: 'Forrest M.')
 puts "Created #{mears.name}"
 hmiranda = Person.create(name: 'Holly M.')
 puts "Created #{hmiranda.name}"
+cenizal = Person.create(name: 'Chris C.')
+puts "Created #{cenizal.name}"
 
 puts '--------------------'
 
@@ -111,4 +113,8 @@ puts "Associated #{team.name} with #{team.person.name}"
 
 team = Team.find_by(name: 'Detroit Tigers')
 team.update(person_id: hmiranda.id)
+puts "Associated #{team.name} with #{team.person.name}"
+
+team = Team.find_by(name: 'San Francisco Giants')
+team.update(person_id: cenizal.id)
 puts "Associated #{team.name} with #{team.person.name}"
