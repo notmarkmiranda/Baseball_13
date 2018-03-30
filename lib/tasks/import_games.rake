@@ -2,7 +2,7 @@ require './app/services/baseball_service'
 
 namespace :main do
   task import_games: :environment do
-    today = DateTime.today
+    today = Time.now
 
     p today
 
