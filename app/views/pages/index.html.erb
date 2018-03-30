@@ -1,5 +1,7 @@
 <div class="teams-table">
-  <h3>Last Update: <%= time_ago_in_words(Event.first.timestamp) %> ago...</h3>
+  <% if Event.first %>
+    <h3>Last Update: <%= time_ago_in_words(Event.first.timestamp) %> ago...</h3>
+  <% end %>
   <div class="table-scroll">
     <table>
       <thead>
