@@ -33,6 +33,10 @@ td, th {
   }
 }
 
+.text-muted {
+  text-transform: uppercase;
+}
+
 @media all and (max-width: 500px) {
   .teams-table {
     margin: 5px;
