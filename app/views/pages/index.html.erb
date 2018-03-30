@@ -18,10 +18,10 @@
         <% @teams.each_with_index do |team, index| %>
 
         <tr class="<%= 'person-class' if team.person %> <%= 'win-class' if team.winner? %>">
-          <td>
+          <td class="team-name">
             <%= "#{(index + 1).to_i}. #{team.name}" %>
             <% if team.person %>
-              <br /><small class="text-muted"><%= team.person.name %></small>
+              <br /><small class="text-muted">Owner: <%= team.person.name %></small>
             <% end %>
           </td>
           <% 14.times do |x| %>

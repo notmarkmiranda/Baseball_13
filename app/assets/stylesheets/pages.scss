@@ -16,6 +16,7 @@ td, th {
   border: 1px solid #000;
   text-align: center !important;
 }
+
 .horizontal-scroll {
   overflow: hidden;
   overflow-x: auto;
@@ -25,6 +26,10 @@ td, th {
 
 .my-table {
   min-width: rem-calc(640);
+}
+
+.team-name {
+  text-align: left !important;
 }
 
 .person-class {
