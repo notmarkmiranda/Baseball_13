@@ -1,24 +1,3 @@
-# README
+# [*0..13] Baseball Pool!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Utilizes a rake task to retrieve data from the MLB Master Scoreboard API to record games and create accomplishments per team based on runs scored. The goal is to complete 14 games with runs scored from 0 through 13. First team to accomplish this wins.
