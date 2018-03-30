@@ -7,8 +7,6 @@ class Team < ApplicationRecord
   end
 
   def self.in_order
-    self.left_joins(:accomplishments)
-        .group(:id)
-        .order('COUNT(accomplishments.id) DESC')
+    self.left_joins(:accomplishments).group(:id).order('COUNT(accomplishments.id) DESC')
   end
 end
