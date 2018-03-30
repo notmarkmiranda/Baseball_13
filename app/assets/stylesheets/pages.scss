@@ -14,6 +14,7 @@ body {
 
 td, th {
   border: 1px solid #000;
+  text-align: center !important;
 }
 .horizontal-scroll {
   overflow: hidden;
@@ -31,6 +32,10 @@ td, th {
   & > td {
     color: #fff;
   }
+}
+
+.win-class {
+  background: goldenrod !important;
 }
 
 .text-muted {

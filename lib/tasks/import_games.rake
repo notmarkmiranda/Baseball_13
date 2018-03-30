@@ -2,7 +2,7 @@ require './app/services/baseball_service'
 
 namespace :main do
   task import_games: :environment do
-    today = DateTime.now
+    today = DateTime.today
 
     p today
 
@@ -31,10 +31,21 @@ namespace :main do
       p home_team.name
 
       home_team.accomplishments.create(team_id: home_team.mlb_id, number: game_object.home_team_score) if eligible?(home_accomplishments, game_object.home_team_score)
+      check_for_win(home_team.accomplishments)
+
       away_team.accomplishments.create(team_id: away_team.mlb_id, number: game_object.away_team_score) if eligible?(away_accomplishments, game_object.away_team_score)
+      check_for_win(away_team.accomplishments)
       Event.create(timestamp: Time.zone.now)
     end
   end
+end
+
+def check_for_win(accomplishments)
+  accomplishments.create(number: 99) if accomplishments.pluck(:number).compact.sort == [*0..13] && no_other_winners?
+end
+
+def no_other_winners?
+  Team.joins(:accomplishments).where(accomplishments: { number: 99 }).empty?
 end
 
 def eligible?(accomplishments, score)

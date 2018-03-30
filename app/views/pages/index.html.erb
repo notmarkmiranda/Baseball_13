@@ -1,6 +1,6 @@
 <div class="teams-table">
   <% if Event.first %>
-    <h3>Last Update: <%= time_ago_in_words(Event.first.timestamp) %> ago...</h3>
+    <h3>Last updated <%= time_ago_in_words(Event.first.timestamp) %> ago.</h3>
   <% end %>
   <div class="horizontal-scroll">
     <table class="my-table">
@@ -10,13 +10,14 @@
           <% 14.times do |x| %>
             <th><%= x %></th>
           <% end %>
-
+          <th>Win</th>
+          <th>Count</th>
         <tr>
       </thead>
       <tbody>
         <% Team.in_order.each_with_index do |team, index| %>
 
-        <tr class="<%= 'person-class' if team.person %>">
+        <tr class="<%= 'person-class' if team.person %> <%= 'win-class' if team.winner? %>">
           <td>
             <%= "#{(index + 1).to_i}. #{team.name}" %>
             <% if team.person %>
@@ -26,7 +27,8 @@
           <% 14.times do |x| %>
             <td><%= team.accomplishment_text(x) %></td>
           <% end %>
-
+          <td><%= team.accomplishment_win? %>
+          <td><%= team.accomplishments_count %></td>
         </tr>
         <% end %>
       </tbody>
