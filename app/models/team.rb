@@ -15,7 +15,7 @@ class Team < ApplicationRecord
   end
 
   def self.in_order
-    self.left_joins(:accomplishments).group(:id).order('COUNT(accomplishments.id) DESC')
+    left_joins(:accomplishments).group(:id).order('COUNT(accomplishments.id) DESC')
   end
 
   def winner?

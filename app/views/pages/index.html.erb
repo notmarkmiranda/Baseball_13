@@ -15,7 +15,7 @@
         <tr>
       </thead>
       <tbody>
-        <% Team.in_order.each_with_index do |team, index| %>
+        <% @teams.each_with_index do |team, index| %>
 
         <tr class="<%= 'person-class' if team.person %> <%= 'win-class' if team.winner? %>">
           <td>
@@ -25,10 +25,10 @@
             <% end %>
           </td>
           <% 14.times do |x| %>
-            <td><%= team.accomplishment_text(x) %></td>
+            <td><%= @accomplishments.team_accomplishment_text(team, x) %></td>
           <% end %>
           <td><%= team.accomplishment_win? %>
-          <td><%= team.accomplishments_count %></td>
+          <td><%= @accomplishments.count_by_team(team) %></td>
         </tr>
         <% end %>
       </tbody>
