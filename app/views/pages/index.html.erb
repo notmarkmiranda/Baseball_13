@@ -2,8 +2,8 @@
   <% if Event.first %>
     <h3>Last Update: <%= time_ago_in_words(Event.first.timestamp) %> ago...</h3>
   <% end %>
-  <div class="table-scroll">
-    <table>
+  <div class="horizontal-scroll">
+    <table class="my-table">
       <thead>
         <tr>
           <th>Team</th>
@@ -25,7 +25,8 @@
       </thead>
       <tbody>
         <% Team.in_order.each_with_index do |team, index| %>
-        <tr>
+
+        <tr class="<%= 'person-class' if team.person %>">
           <td>
             <%= "#{(index + 1).to_i}. #{team.name}" %>
             <% if team.person %>

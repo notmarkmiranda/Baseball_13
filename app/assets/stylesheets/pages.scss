@@ -10,9 +10,25 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-items: center;
 }
 
 td, th {
   border: 1px solid #000;
+}
+.horizontal-scroll {
+  overflow: hidden;
+  overflow-x: auto;
+  clear: both;
+  width: 100%;
+}
+
+.my-table {
+  min-width: rem-calc(640);
+}
+
+.person-class {
+  background: #005A9C !important;
+  & > td {
+    color: #fff;
+  }
 }
