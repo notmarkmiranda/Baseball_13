@@ -1,8 +1,8 @@
 require './app/services/baseball_service'
 
 namespace :main do
-  task import_games: :environment do
-    today = Time.now
+  task :import_games, [:yesterday] =>  [:environment] do |t, args|
+    today = get_time(args[:yesterday])
 
     p today
 
@@ -60,4 +60,9 @@ end
 def format_number(number)
   return "%02d" % number if number < 10
   number
+end
+
+def get_time(yesterday)
+  return Time.now - 86400 if yesterday == 'true'
+  return Time.now
 end
