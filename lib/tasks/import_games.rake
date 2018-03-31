@@ -45,7 +45,7 @@ def check_for_win(accomplishments)
 end
 
 def no_other_winners?
-  Team.joins(:accomplishments).where(accomplishments: { number: 99 }).empty?
+  Team.joins(:accomplishments).where(accomplishments: { number: 99 }).where.not(person_id: nil).empty?
 end
 
 def eligible?(accomplishments, score)
