@@ -2,8 +2,8 @@ require './app/services/baseball_service'
 
 namespace :main do
   task :import_games, [:yesterday] =>  [:environment] do |t, args|
-    today = get_time(args[:yesterday])
-
+    @yesterday = args[:yesterday]
+    today = get_time(@yesterday)
     p today
 
     year = today.year.to_s
@@ -41,11 +41,26 @@ namespace :main do
 end
 
 def check_for_win(accomplishments)
-  accomplishments.create(number: 99) if accomplishments.pluck(:number).compact.sort == [*0..13] && no_other_winners?
+  accomplishments.create(number: 99) if all_games_won?(accomplishments) && no_other_winners?
+end
+
+def all_games_won?(accomplishments)
+  accomplishments.pluck(:number).compact.sort == [*0..13]
 end
 
 def no_other_winners?
-  Team.joins(:accomplishments).where(accomplishments: { number: 99 }).where.not(person_id: nil).empty?
+  teams = Team.joins(:accomplishments).where(accomplishments: { number: 99 }).where.not(person_id: nil)
+  if teams.empty?
+    return true
+  else
+    acc_date = teams.map { |team| team.accomplishments.find_by(number: 99) }&.first&.created_at
+    check_today?(acc_date)
+  end
+end
+
+def check_today?(acc_date)
+  return acc_date.tomorrow.today? if @yesterday == 'true'
+  acc_date.today?
 end
 
 def eligible?(accomplishments, score)
