@@ -30,10 +30,12 @@ namespace :main do
       p away_team.name
       p home_team.name
 
-      home_team.accomplishments.create(team_id: home_team.mlb_id, number: game_object.home_team_score) if eligible?(home_accomplishments, game_object.home_team_score)
+      h_acc = home_team.accomplishments.create(team_id: home_team.mlb_id, number: game_object.home_team_score) if eligible?(home_accomplishments, game_object.home_team_score)
+      h_acc&.update(created_at: h_acc.created_at.yesterday) if @yesterday == 'true'
       check_for_win(home_team.accomplishments)
 
-      away_team.accomplishments.create(team_id: away_team.mlb_id, number: game_object.away_team_score) if eligible?(away_accomplishments, game_object.away_team_score)
+      a_acc = away_team.accomplishments.create(team_id: away_team.mlb_id, number: game_object.away_team_score) if eligible?(away_accomplishments, game_object.away_team_score)
+      a_acc&.update(created_at: a_acc.created_at.yesterday) if @yesterday == 'true'
       check_for_win(away_team.accomplishments)
       Event.create(timestamp: Time.zone.now)
     end

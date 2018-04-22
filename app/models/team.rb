@@ -17,6 +17,11 @@ class Team < ApplicationRecord
     accomplishments.find_by(number: 99).nil? ? '' : '!!'
   end
 
+  def last_update_date
+    date = accomplishments.sort_by(&:created_at).last&.created_at
+    date ? date&.strftime('%B %-e, %Y') : 'Nothing yet'
+  end
+
   def self.in_order
     left_joins(:accomplishments).group(:id).order('COUNT(accomplishments.id) DESC', :person_id)
   end
